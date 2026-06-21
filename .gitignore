@@ -1,0 +1,40 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Frontend dependencies and builds
+CRUD/frontend/node_modules/
+CRUD/frontend/dist/
+CRUD/frontend/.env
+CRUD/frontend/.env.production
+CRUD/frontend/.env.local
+CRUD/frontend/.env.*.local
+
+# Original Backend (if any)
+CRUD/backend/node_modules/
+CRUD/backend/database.sqlite
+
+# Laravel Backend
+sunedu_laravel/.env
+sunedu_laravel/.env.production
+sunedu_laravel/.env.backup
+sunedu_laravel/.env.production.backup
+sunedu_laravel/vendor/
+sunedu_laravel/node_modules/
+sunedu_laravel/bootstrap/cache/*
+!sunedu_laravel/bootstrap/cache/.gitignore
+sunedu_laravel/storage/framework/cache/data/*
+!sunedu_laravel/storage/framework/cache/data/.gitignore
+sunedu_laravel/storage/framework/views/*
+!sunedu_laravel/storage/framework/views/.gitignore
+sunedu_laravel/storage/framework/sessions/*
+!sunedu_laravel/storage/framework/sessions/.gitignore
+sunedu_laravel/storage/framework/testing/*
+!sunedu_laravel/storage/framework/testing/.gitignore
+sunedu_laravel/storage/logs/*
+!sunedu_laravel/storage/logs/.gitignore
+sunedu_laravel/storage/app/*
+!sunedu_laravel/storage/app/.gitignore
+!sunedu_laravel/storage/app/public/.gitignore
+sunedu_laravel/storage/app/public/*
+sunedu_laravel/.phpunit.result.cache

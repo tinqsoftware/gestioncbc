@@ -1,0 +1,11 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('{any}', function () {
+    $indexPath = public_path('index.html');
+    if (file_exists($indexPath)) {
+        return file_get_contents($indexPath);
+    }
+    return response("Frontend not built yet. Please run 'npm run build' in CRUD/frontend.", 404);
+})->where('any', '.*');
