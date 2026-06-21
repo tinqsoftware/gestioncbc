@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { API_URL } from '../config';
 
 const ForcePasswordChange = ({ user, onPasswordChanged }) => {
+  const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,14 +15,14 @@ const ForcePasswordChange = ({ user, onPasswordChanged }) => {
       return;
     }
     if (newPassword.length < 6) {
-      setError('La contraseña debe tener al menos 6 caracteres');
+      setError('La nueva contraseña debe tener al menos 6 caracteres');
       return;
     }
 
     fetch(`${API_URL}/users/change-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: user.id, oldPassword: '12345678', newPassword })
+      body: JSON.stringify({ userId: user.id, oldPassword, newPassword })
     })
       .then(res => res.json())
       .then(data => {
@@ -53,6 +54,17 @@ const ForcePasswordChange = ({ user, onPasswordChanged }) => {
         {success && <div className="alert success" style={{ marginBottom: '1rem', background: '#d1fae5', color: '#065f46', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid #34d399' }}>{success}</div>}
 
         <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Contraseña Temporal o Actual</label>
+            <input 
+              type="password" 
+              className="form-control" 
+              value={oldPassword} 
+              onChange={e => setOldPassword(e.target.value)} 
+              required
+              placeholder="La contraseña con la que ingresaste"
+            />
+          </div>
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Nueva Contraseña</label>
             <input 
