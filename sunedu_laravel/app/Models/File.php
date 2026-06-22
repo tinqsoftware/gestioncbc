@@ -8,6 +8,8 @@ class File extends Model
 {
     protected $table = 'files';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'internal_id', 'year', 'type_anp', 'canal_origen', 'nro_expediente_sunged',
         'id_universidad', 'tipo_gestion', 'codigo_local', 'modelo', 'cbc',
