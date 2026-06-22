@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { API_URL } from '../config';
 
 const ForcePasswordChange = ({ user, onPasswordChanged }) => {
-  const [oldPassword, setOldPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState(sessionStorage.getItem('temp_password') || '');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');

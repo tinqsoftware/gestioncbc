@@ -16,7 +16,7 @@ const Login = ({ onLogin }) => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          onLogin(data.user);
+          onLogin(data.user, password);
         } else {
           setError(data.message);
         }

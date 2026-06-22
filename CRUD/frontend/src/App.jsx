@@ -23,26 +23,31 @@ function App() {
     }
   }, []);
 
-  const handleLogin = (userData) => {
+  const handleLogin = (userData, password = '') => {
     localStorage.setItem('anp_user', JSON.stringify(userData));
+    if (password) {
+      sessionStorage.setItem('temp_password', password);
+    }
     setUser(userData);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('anp_user');
+    sessionStorage.removeItem('temp_password');
     setUser(null);
   };
 
   const handlePasswordChanged = () => {
     const updatedUser = { ...user, must_change_password: 0 };
     handleLogin(updatedUser);
+    sessionStorage.removeItem('temp_password');
   };
 
   if (!user) {
     return <Login onLogin={handleLogin} />;
   }
 
-  if (user.must_change_password === 1) {
+  if (Number(user.must_change_password) === 1) {
     return <ForcePasswordChange user={user} onPasswordChanged={handlePasswordChanged} />;
   }
 
